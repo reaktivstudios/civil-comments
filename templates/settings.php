@@ -9,7 +9,7 @@ if ( ! current_user_can( 'manage_options' ) ) {
 	return;
 }
 
-if ( isset( $_GET['settings-updated'] ) ) {
+if ( isset( $_GET['settings-updated'] ) ) { // Input var okay.
 	add_settings_error( 'civil_comments_messages', 'civil_comments_message', __( 'Settings Saved' ), 'updated' );
 }
 
