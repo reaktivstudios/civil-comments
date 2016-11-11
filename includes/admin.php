@@ -25,5 +25,5 @@ function add_settings_page() {
 }
 
 function render_settings_page() {
-	require_once CC_PLUGIN_DIR . '/templates/settings.php';
+	require_once CIVIL_PLUGIN_DIR . '/templates/settings.php';
 }
