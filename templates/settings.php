@@ -29,14 +29,31 @@ settings_errors( 'civil_comments_messages' );
 		// @codingStandardsIgnoreEnd
 
 		$enable = isset( $settings['enable'] ) ? $settings['enable'] : false;
+		$publication_slug = isset( $settings['publication_slug'] ) ? $settings['publication_slug'] : '';
 		?>
 		<table class="form-table">
+			<tr>
+				<th scope="row">
+					<h2><?php esc_html_e( 'General' ); ?></h2>
+				</th>
+			</tr>
 			<tr>
 				<th scope="row">
 					<label for="civil_comments[enable]"><?php esc_html_e( 'Enable Civil Comments' ); ?></label>
 				</th>
 				<td>
 					<input type="checkbox" name="civil_comments[enable]" id="civil_comments[enable]" value="1" <?php checked( '1', $enable ); ?>
+				</td>
+			</tr>
+			<tr>
+				<th scope="row">
+					<label for="civil_comments[publication_slug]">
+						<?php esc_html_e( 'Publication Slug' ); ?>
+					</label>
+				</th>
+				<td>
+					<input type="text" id="civil_comments[publication_slug]" name="civil_comments[publication_slug]" class="regular-text" value="<?php echo esc_attr( $publication_slug ); ?>">
+					<p class="description"><?php esc_html_e( 'The unique ID for your site from Civil Comments.' ); ?></p>
 				</td>
 			</tr>
 		</table>
