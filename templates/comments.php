@@ -8,6 +8,7 @@
 global $post;
 $settings = get_option( 'civil_comments', array() );
 $publication_slug = isset( $settings['publication_slug'] ) ? $settings['publication_slug'] : '';
+$lang = isset( $settings['lang'] ) ? $settings['lang'] : 'en_US';
 ?>
 <div id="comments" class="comments-area">
 	<div id="civil-comments"></div>
@@ -21,6 +22,6 @@ $publication_slug = isset( $settings['publication_slug'] ) ? $settings['publicat
 			s.parentNode.insertBefore(t, s); c[n].r = 1;};
 		c["CivilCommentsObject"] = c[n];
 	})(window, document, "script", "https://ssr.civilcomments.com/v1", "Civil");
-	Civil(<?php echo wp_json_encode( $post->ID ); ?>, <?php echo wp_json_encode( $publication_slug ); ?>,"en");
+	Civil(<?php echo wp_json_encode( $post->ID ); ?>, <?php echo wp_json_encode( $publication_slug ); ?>, <?php echo wp_json_encode( $lang ); ?>);
 	</script>
 </div><!-- .comments-area -->
