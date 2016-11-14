@@ -56,6 +56,45 @@ settings_errors( 'civil_comments_messages' );
 					<p class="description"><?php esc_html_e( 'The unique ID for your site from Civil Comments.' ); ?></p>
 				</td>
 			</tr>
+			<tr>
+				<th scope="row">
+					<label for="WPLANG">
+						<?php esc_html_e( 'Language' ); ?>
+					</label>
+				</th>
+				<td>
+					<?php
+					$languages = get_available_languages();
+					if ( ! is_multisite() && defined( 'WPLANG' ) && '' !== WPLANG && 'en_US' !== WPLANG && ! in_array( WPLANG, $languages, true ) ) {
+						$languages[] = WPLANG;
+					}
+
+					if ( ! empty( $languages ) ) {
+						$locale = get_locale();
+						if ( ! in_array( $locale, $languages, true ) ) {
+							$locale = '';
+						}
+
+						wp_dropdown_languages( array(
+							'name'         => 'WPLANG',
+							'id'           => 'WPLANG',
+							'selected'     => $locale,
+							'languages'    => $languages,
+							'show_available_translations' => false,
+						) );
+					} else { ?>
+						<select name="civil_comments[lang]" id="civil_comments[lang]">
+							<option value="en_US" selected>English (United States)</option>
+						</select>
+					<?php } ?>
+						<p class="description"><?php esc_html_e( 'Choose from your installed languages. Defaults to your currently selected language.' ); ?></p>
+					</td>
+				</tr>
+				<tr>
+					<th scope="row">
+						<h2><?php esc_html_e( 'Single Sign On' ); ?></h2>
+					</th>
+				</tr>
 		</table>
 
 		<?php submit_button( __( 'Save Settings' ) ); ?>
