@@ -16,7 +16,7 @@ if ( isset( $_GET['settings-updated'] ) ) { // Input var okay.
 settings_errors( 'civil_comments_messages' );
 ?>
 <div class="wrap">
-	<a href="https://app.civilcomments.com/users/sign_in" style="float:right; margin-right: 0.6em; margin-top:0.6em;">
+	<a href="https://app.civilcomments.com/" style="float:right; margin-right: 0.6em; margin-top:0.2em;">
 		<img src="<?php echo esc_url( CIVIL_PLUGIN_URL . '/assets/img/logo.png' ); ?>" alt="<?php esc_attr_e( 'Civil Comments Logo' ); ?>" height="40" width="75">
 	</a>
 	<h1><?php echo esc_html( get_admin_page_title() ); ?></h1>
