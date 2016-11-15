@@ -28,31 +28,59 @@ if ( is_admin() ) {
 	require_once CIVIL_PLUGIN_DIR . '/includes/admin.php';
 }
 
-// @TODO
-function civil_can_replace() {
-	return true;
+/**
+ * Determines whether to show civil comments on a specific post.
+ *
+ * @param  WP_Post $post A post object.
+ * @return boolean
+ */
+function civil_can_replace( $post ) {
+	$replace = true;
+
+	if ( ! ( is_singular() && 'open' === $post->comment_status ) ) {
+		$replace = false;
+	}
+
+	// Only show on publish or private posts.
+	if ( ! in_array( $post->post_status, array( 'publish', 'private' ), true ) ) {
+		$replace = false;
+	}
+
+	$settings = get_option( 'civil_comments', array() );
+	$start_date = ! empty( $settings['start_date'] ) ? $settings['start_date'] : '';
+
+	// Only show on posts past the start date.
+	if ( ! empty( $start_date )
+		&& mysql2date( 'U', $post->post_date ) < strtotime( $start_date ) ) {
+		$replace = false;
+	}
+
+	return apply_filters( 'civil_can_replace', $replace, $post );
 }
 
+/**
+ * Determines whether Civil Comments is enabled and has a publication slug.
+ *
+ * @return boolean
+ */
 function civil_is_enabled() {
 	$settings = get_option( 'civil_comments', array() );
-	$enabled = isset( $settings['enable'] ) && '1' === $settings['enable'] ? true : false;
-	return apply_filters( 'civil_comments_enabled', $enabled );
-}
-
-// @TODO
-function civil_is_installed() {
-	$settings = get_option( 'civil_comments', array() );
 	$installed = ! empty( $settings['publication_slug'] )? true : false;
-	return apply_filters( 'civil_comments_installed', $installed );
+	$enabled = isset( $settings['enable'] ) && '1' === $settings['enable'] ? true : false;
+	return apply_filters( 'civil_comments_enabled', $enabled && $installed );
 }
 
 add_filter( 'comments_template', 'civil_comments_template' );
+/**
+ * Load the custom Civil Comments template.
+ *
+ * @param  string $template Path to a template file.
+ * @return string
+ */
 function civil_comments_template( $template ) {
 	global $post;
 
-	// Don't load civil comments template
-	// if not on a singular post where comments are open.
-	if ( ! ( is_singular() && 'open' === $post->comment_status ) ) {
+	if ( empty( $post ) ) {
 		return $template;
 	}
 
@@ -60,16 +88,9 @@ function civil_comments_template( $template ) {
 		return $template;
 	}
 
-	if ( ! civil_is_installed() ) {
+	if ( ! civil_can_replace( $post ) ) {
 		return $template;
 	}
 
-	if ( ! civil_can_replace() ) {
-		return $template;
-	}
-
-	// TODO: If a civil-comments.php is found in the current template's
-	// path, use that instead of the default bundled comments.php
-	// return TEMPLATEPATH . '/civil-comments.php';
 	return dirname( __FILE__ ) . '/templates/comments.php';
 }

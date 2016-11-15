@@ -1,6 +1,6 @@
 ( function( $ ) {
 	$( '#js-start-date' ).datetimepicker( {
-		dateFormat: 'mm/dd/yy',
+		dateFormat: 'yy-mm-dd',
 		ampm: true
 	} );
 } )( jQuery );

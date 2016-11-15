@@ -97,6 +97,7 @@ settings_errors( 'civil_comments_messages' );
 					</th>
 					<td>
 						<input type="text" name="civil_comments[start_date]" id="js-start-date" class="regular-text" value="<?php echo esc_attr( $start_date ); ?>">
+						<p class="description"><?php esc_html_e( 'If left blank, civil comments will apply to all existing and future posts. If a date and time are provided, Civil will only be applied to posts created after that date.' ); ?></p>
 					</td>
 				</tr>
 				<tr>
