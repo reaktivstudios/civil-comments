@@ -30,6 +30,7 @@ settings_errors( 'civil_comments_messages' );
 
 		$enable = isset( $settings['enable'] ) ? $settings['enable'] : false;
 		$publication_slug = isset( $settings['publication_slug'] ) ? $settings['publication_slug'] : '';
+		$start_date = isset( $settings['start_date'] ) ? $settings['start_date'] : '';
 		?>
 		<table class="form-table">
 			<tr>
@@ -39,26 +40,26 @@ settings_errors( 'civil_comments_messages' );
 			</tr>
 			<tr>
 				<th scope="row">
-					<label for="civil_comments[enable]"><?php esc_html_e( 'Enable Civil Comments' ); ?></label>
+					<label for="cc-enable"><?php esc_html_e( 'Enable Civil Comments' ); ?></label>
 				</th>
 				<td>
-					<input type="checkbox" name="civil_comments[enable]" id="civil_comments[enable]" value="1" <?php checked( '1', $enable ); ?>
+					<input type="checkbox" name="civil_comments[enable]" id="cc-enable" value="1" <?php checked( '1', $enable ); ?>
 				</td>
 			</tr>
 			<tr>
 				<th scope="row">
-					<label for="civil_comments[publication_slug]">
+					<label for="cc-publication-slug">
 						<?php esc_html_e( 'Publication Slug' ); ?>
 					</label>
 				</th>
 				<td>
-					<input type="text" id="civil_comments[publication_slug]" name="civil_comments[publication_slug]" class="regular-text" value="<?php echo esc_attr( $publication_slug ); ?>">
+					<input type="text" id="cc-publication-slug" name="civil_comments[publication_slug]" class="regular-text" value="<?php echo esc_attr( $publication_slug ); ?>">
 					<p class="description"><?php esc_html_e( 'The unique ID for your site from Civil Comments.' ); ?></p>
 				</td>
 			</tr>
 			<tr>
 				<th scope="row">
-					<label for="WPLANG">
+					<label for="cc-lang">
 						<?php esc_html_e( 'Language' ); ?>
 					</label>
 				</th>
@@ -76,18 +77,26 @@ settings_errors( 'civil_comments_messages' );
 						}
 
 						wp_dropdown_languages( array(
-							'name'         => 'WPLANG',
-							'id'           => 'WPLANG',
-							'selected'     => $locale,
-							'languages'    => $languages,
+							'name'                        => 'civil_comments[lang]',
+							'id'                          => 'cc-lang',
+							'selected'                    => $locale,
+							'languages'                   => $languages,
 							'show_available_translations' => false,
 						) );
 					} else { ?>
-						<select name="civil_comments[lang]" id="civil_comments[lang]">
+						<select name="civil_comments[lang]" id="cc-lang">
 							<option value="en_US" selected>English (United States)</option>
 						</select>
 					<?php } ?>
 						<p class="description"><?php esc_html_e( 'Choose from your installed languages. Defaults to your currently selected language.' ); ?></p>
+					</td>
+				</tr>
+				<tr>
+					<th scope="row">
+						<label for="js-start-date"><?php esc_html_e( 'Start Date' ); ?></label>
+					</th>
+					<td>
+						<input type="text" name="civil_comments[start_date]" id="js-start-date" class="regular-text" value="<?php echo esc_attr( $start_date ); ?>">
 					</td>
 				</tr>
 				<tr>

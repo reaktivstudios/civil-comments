@@ -20,6 +20,10 @@ if ( ! defined( 'CIVIL_PLUGIN_URL' ) ) {
 	define( 'CIVIL_PLUGIN_URL', plugins_url( '/', __FILE__ ) );
 }
 
+if ( ! defined( 'CIVIL_VERSION' ) ) {
+	define( 'CIVIL_VERSION', '0.1.0' );
+}
+
 if ( is_admin() ) {
 	require_once CIVIL_PLUGIN_DIR . '/includes/admin.php';
 }
