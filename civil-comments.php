@@ -41,7 +41,9 @@ function civil_is_enabled() {
 
 // @TODO
 function civil_is_installed() {
-	return true;
+	$settings = get_option( 'civil_comments', array() );
+	$installed = ! empty( $settings['publication_slug'] )? true : false;
+	return apply_filters( 'civil_comments_installed', $installed );
 }
 
 add_filter( 'comments_template', 'civil_comments_template' );
