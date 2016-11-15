@@ -50,8 +50,10 @@ add_filter( 'comments_template', 'civil_comments_template' );
 function civil_comments_template( $template ) {
 	global $post;
 
-	if ( ! ( is_singular() && ( have_comments() || 'open' === $post->comment_status ) ) ) {
-		return;
+	// Don't load civil comments template
+	// if not on a singular post where comments are open.
+	if ( ! ( is_singular() && 'open' === $post->comment_status ) ) {
+		return $template;
 	}
 
 	if ( ! civil_is_enabled() ) {
