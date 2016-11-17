@@ -24,10 +24,6 @@ settings_errors( 'civil_comments_messages' );
 		<?php
 		settings_fields( 'civil_comments' );
 		$settings = get_option( 'civil_comments', array() );
-		// @codingStandardsIgnoreStart
-		var_dump( $settings );
-		// @codingStandardsIgnoreEnd
-
 		$enable = isset( $settings['enable'] ) ? (bool) $settings['enable'] : false;
 		$publication_slug = isset( $settings['publication_slug'] ) ? $settings['publication_slug'] : '';
 		$start_date = isset( $settings['start_date'] ) ? $settings['start_date'] : '';
