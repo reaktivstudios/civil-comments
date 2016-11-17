@@ -28,9 +28,10 @@ settings_errors( 'civil_comments_messages' );
 		var_dump( $settings );
 		// @codingStandardsIgnoreEnd
 
-		$enable = isset( $settings['enable'] ) ? $settings['enable'] : false;
+		$enable = isset( $settings['enable'] ) ? (bool) $settings['enable'] : false;
 		$publication_slug = isset( $settings['publication_slug'] ) ? $settings['publication_slug'] : '';
 		$start_date = isset( $settings['start_date'] ) ? $settings['start_date'] : '';
+		$enable_sso = isset( $settings['enable_sso'] ) ? (bool) $settings['enable_sso'] : false;
 		$sso_secret = isset( $settings['sso_secret'] ) ? $settings['sso_secret'] : '';
 		?>
 		<table class="form-table">
@@ -103,9 +104,17 @@ settings_errors( 'civil_comments_messages' );
 				</tr>
 				<tr>
 					<th scope="row">
-						<h2><?php esc_html_e( 'Single Sign On' ); ?></h2>
-						<p class="description"><?php esc_html_e( 'Optional. Site owners can replace Civil\'s built-in login options with their site\'s existing account management system. Requires SSO to be enabled in the Civil Comments admin.' ); ?></p>
+						<h2><?php esc_html_e( 'Single Sign-On' ); ?></h2>
 					</th>
+				</tr>
+				<tr>
+					<th scope="row">
+						<label for="cc-enable-sso"><?php esc_html_e( 'Enable Single Sign-On' ); ?></label>
+					</th>
+					<td>
+						<input type="checkbox" name="civil_comments[enable_sso]" id="cc-enable-sso" value="1" <?php checked( '1', $enable_sso ); ?>>
+						<p class="description"><?php esc_html_e( 'Optional. Site owners can replace Civil\'s built-in login options with their site\'s existing account management system. Requires SSO to be enabled in the Civil Comments admin.' ); ?></p>
+					</td>
 				</tr>
 				<tr>
 					<th scope="row">

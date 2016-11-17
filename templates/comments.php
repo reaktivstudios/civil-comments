@@ -9,12 +9,12 @@ global $post;
 $settings = get_option( 'civil_comments', array() );
 $publication_slug = isset( $settings['publication_slug'] ) ? $settings['publication_slug'] : '';
 $lang = isset( $settings['lang'] ) ? $settings['lang'] : 'en_US';
+$enable_sso = isset( $settings['enable_sso'] ) ? (bool) $settings['enable_sso'] : false;
 $token = null;
 
-if ( is_user_logged_in() ) {
+if ( $enable_sso && is_user_logged_in() ) {
 	$token = civil_get_jwt_token( wp_get_current_user(), $settings['sso_secret'] );
 }
-
 ?>
 <div id="comments" class="comments-area">
 	<div id="civil-comments"></div>
