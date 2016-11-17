@@ -8,11 +8,17 @@
 namespace Civil_Comments;
 
 add_action( 'admin_init', __NAMESPACE__ . '\\register_settings' );
+/**
+ * Register setting.
+ */
 function register_settings() {
 	register_setting( 'civil_comments', 'civil_comments' );
 }
 
 add_action( 'admin_menu', __NAMESPACE__ . '\\add_settings_page' );
+/**
+ * Add settings page to Comments menu.
+ */
 function add_settings_page() {
 	add_submenu_page(
 		'edit-comments.php',
@@ -24,11 +30,19 @@ function add_settings_page() {
 	);
 }
 
+/**
+ * Render the settings page.
+ */
 function render_settings_page() {
 	require_once CIVIL_PLUGIN_DIR . '/templates/settings.php';
 }
 
 add_action( 'admin_enqueue_scripts', __NAMESPACE__ . '\\enqueue_scripts' );
+/**
+ * Enque admin scripts.
+ *
+ * @param  string $hook Admin page hook.
+ */
 function enqueue_scripts( $hook ) {
 	if ( 'comments_page_civil-comments' !== $hook ) {
 		return;
