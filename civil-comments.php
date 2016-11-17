@@ -118,7 +118,12 @@ function civil_get_jwt_token( $user, $key ) {
 		'avatar_url' => get_avatar_url( $user ),
 	);
 
-	$token = Civil_Comments\JWT::encode( $payload, $key, 'HS256' );
+	try {
+		$token = Civil_Comments\JWT::encode( $payload, $key, 'HS256' );
+	} catch ( Exception $e ) {
+		return null;
+	}
+
 	return $token;
 }
 

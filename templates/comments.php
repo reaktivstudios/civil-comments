@@ -10,10 +10,14 @@ $settings = get_option( 'civil_comments', array() );
 $publication_slug = isset( $settings['publication_slug'] ) ? $settings['publication_slug'] : '';
 $lang = isset( $settings['lang'] ) ? $settings['lang'] : 'en_US';
 $enable_sso = isset( $settings['enable_sso'] ) ? (bool) $settings['enable_sso'] : false;
-$token = null;
+$sso_secret = isset( $settings['sso_secret'] ) ? $settings['sso_secret'] : false;
+$current_user = null;
 
-if ( $enable_sso && is_user_logged_in() ) {
-	$token = civil_get_jwt_token( wp_get_current_user(), $settings['sso_secret'] );
+if ( $enable_sso && ! empty( $sso_secret ) && is_user_logged_in() ) {
+	$token = civil_get_jwt_token( wp_get_current_user(), $sso_secret );
+	$current_user = array(
+		'token' => $token,
+	);
 }
 ?>
 <div id="comments" class="comments-area">
@@ -31,10 +35,8 @@ if ( $enable_sso && is_user_logged_in() ) {
 
 	Civil(<?php echo wp_json_encode( $post->ID ); ?>, <?php echo wp_json_encode( $publication_slug ); ?>, <?php echo wp_json_encode( $lang ); ?>);
 
-	function civilWpGetCurrentUser(callback) {
-		return {
-			token: <?php echo wp_json_encode( $token ); ?>
-		}
+	function civilWpGetCurrentUser() {
+		return <?php echo wp_json_encode( $current_user ); ?>
 	}
 
 	Civil({
