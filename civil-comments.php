@@ -94,3 +94,47 @@ function civil_comments_template( $template ) {
 
 	return dirname( __FILE__ ) . '/templates/comments.php';
 }
+
+/**
+ * Get JWT token for SSO.
+ *
+ * @uses Civil_Comments\JWT
+ *
+ * @param  WP_User $user WP User object for the user to auth.
+ * @param  string  $key  Secret key from Civil Comments.
+ * @return string        Signed JWT token.
+ */
+function civil_get_jwt_token( $user, $key ) {
+	include_once CIVIL_PLUGIN_DIR . '/includes/vendor/JWT.php';
+	$expires = 86400;
+
+	$payload = array(
+		'exp'        => time() + (int) $expires,
+		'iat'        => time(),
+		'jti'        => civil_generate_uuid(),
+		'id'         => $user->ID,
+		'name'       => $user->display_name,
+		'email'      => $user->user_email,
+		'avatar_url' => get_avatar_url( $user ),
+	);
+
+	$token = Civil_Comments\JWT::encode( $payload, $key, 'HS256' );
+	return $token;
+}
+
+/**
+ * Generate a UUID.
+ *
+ * Used for the jti in JWT.
+ *
+ * @return string
+ */
+function civil_generate_uuid() {
+	return sprintf( '%04x%04x-%04x-%04x-%04x-%04x%04x%04x',
+		mt_rand( 0, 0xffff ), mt_rand( 0, 0xffff ),
+		mt_rand( 0, 0xffff ),
+		mt_rand( 0, 0x0fff ) | 0x4000,
+		mt_rand( 0, 0x3fff ) | 0x8000,
+		mt_rand( 0, 0xffff ), mt_rand( 0, 0xffff ), mt_rand( 0, 0xffff )
+	);
+}

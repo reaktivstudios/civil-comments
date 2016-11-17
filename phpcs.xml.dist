@@ -11,6 +11,7 @@
 	<exclude-pattern>assets/*</exclude-pattern>
 	<exclude-pattern>bin/*</exclude-pattern>
 	<exclude-pattern>vendor/*</exclude-pattern>
+	<exclude-pattern>includes/vendor/*</exclude-pattern>
 	<exclude-pattern>tests/*</exclude-pattern>
 
 	<rule ref="WordPress"></rule>

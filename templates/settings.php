@@ -31,6 +31,7 @@ settings_errors( 'civil_comments_messages' );
 		$enable = isset( $settings['enable'] ) ? $settings['enable'] : false;
 		$publication_slug = isset( $settings['publication_slug'] ) ? $settings['publication_slug'] : '';
 		$start_date = isset( $settings['start_date'] ) ? $settings['start_date'] : '';
+		$sso_secret = isset( $settings['sso_secret'] ) ? $settings['sso_secret'] : '';
 		?>
 		<table class="form-table">
 			<tr>
@@ -103,7 +104,19 @@ settings_errors( 'civil_comments_messages' );
 				<tr>
 					<th scope="row">
 						<h2><?php esc_html_e( 'Single Sign On' ); ?></h2>
+						<p class="description"><?php esc_html_e( 'Optional. Site owners can replace Civil\'s built-in login options with their site\'s existing account management system. Requires SSO to be enabled in the Civil Comments admin.' ); ?></p>
 					</th>
+				</tr>
+				<tr>
+					<th scope="row">
+						<label for="cc-sso-secret">
+							<?php esc_html_e( 'SSO Secret' ); ?>
+						</label>
+					</th>
+					<td>
+						<input type="text" id="cc-sso-secret" name="civil_comments[sso_secret]" class="regular-text" value="<?php echo esc_attr( $sso_secret ); ?>">
+						<p class="description"><?php esc_html_e( 'Secret key from Civil Comments admin.' ); ?></p>
+					</td>
 				</tr>
 		</table>
 
