@@ -1,5 +1,5 @@
 === Civil Comments ===
-Contributors: (this should be a list of wordpress.org userid's)
+Contributors: jjeaton, reaktivstudios
 Donate link: http://example.com/
 Tags: comments, spam
 Requires at least: 3.7

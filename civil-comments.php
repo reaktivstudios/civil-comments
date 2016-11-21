@@ -3,11 +3,12 @@
  * Plugin Name:     Civil Comments
  * Plugin URI:      https://www.civilcomments.com/
  * Description:     Replace your comments with Civil Comments
- * Author:          Civil Comments, Josh Eaton, Reaktiv Studios
+ * Author:          Civil Comments
  * Author URI:      https://www.civilcomments.com/
  * Text Domain:     civil-comments
  * Domain Path:     /languages
  * Version:         0.1.0
+ * License:         GPLv2 or later
  *
  * @package         Civil_Comments
  */
