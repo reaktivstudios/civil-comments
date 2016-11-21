@@ -13,6 +13,7 @@ $enable_sso = isset( $settings['enable_sso'] ) ? (bool) $settings['enable_sso'] 
 $sso_secret = isset( $settings['sso_secret'] ) ? $settings['sso_secret'] : false;
 $current_user = null;
 
+// Attempt SSO if enabled, configured and we're logged in.
 if ( $enable_sso && ! empty( $sso_secret ) && is_user_logged_in() ) {
 	$token = civil_get_jwt_token( wp_get_current_user(), $sso_secret );
 	$current_user = array(
