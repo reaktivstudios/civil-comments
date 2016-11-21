@@ -15,6 +15,37 @@ class CivilCommentsTest extends WP_UnitTestCase {
 		require_once ABSPATH . WPINC . '/class-phpass.php';
 	}
 
+	public function test_get_settings() {
+		$settings = Civil_Comments\get_settings();
+
+		$keys = array(
+			'enable',
+			'publication_slug',
+			'lang',
+			'start_date',
+			'enable_sso',
+			'sso_secret',
+		);
+		foreach ( $keys as $key ) {
+			$this->assertArrayHasKey( $key, $settings );
+		}
+
+		$this->assertEquals( 'en_US', $settings['lang'] );
+	}
+
+	public function test_civil_comments_is_enabled_passes() {
+		$this->assertFalse( Civil_Comments\is_enabled() );
+
+		update_option( 'civil_comments', array( 'enable' => 1 ) );
+		$this->assertFalse( Civil_Comments\is_enabled() );
+
+		update_option( 'civil_comments', array( 'enable' => '', 'publication_slug' => 'test' ) );
+		$this->assertFalse( Civil_Comments\is_enabled() );
+
+		update_option( 'civil_comments', array( 'enable' => 1, 'publication_slug' => 'test' ) );
+		$this->assertTrue( Civil_Comments\is_enabled() );
+	}
+
 	public function test_civil_comments_not_returned_when_disabled() {
 		$p = $this->factory->post->create( array(
 			'post_title' => 'no-comments-post'

@@ -8,6 +8,26 @@
 namespace Civil_Comments;
 
 /**
+ * Wrapper to set defaults when getting plugin settings.
+ *
+ * @return array
+ */
+function get_settings() {
+	$defaults = array(
+		'enable'           => '',
+		'lang'             => 'en_US',
+		'publication_slug' => '',
+		'start_date'       => '',
+		'enable_sso'       => '',
+		'sso_secret'       => '',
+	);
+
+	$settings = get_option( 'civil_comments', array() );
+
+	return wp_parse_args( $settings, $defaults );
+}
+
+/**
  * Determines whether to show civil comments on a specific post.
  *
  * @param  WP_Post $post A post object.
@@ -30,7 +50,7 @@ function can_replace( $post ) {
 		$replace = false;
 	}
 
-	$settings = get_option( 'civil_comments', array() );
+	$settings = get_settings( 'civil_comments' );
 	$start_date = ! empty( $settings['start_date'] ) ? $settings['start_date'] : '';
 
 	// Only show on posts past the start date.
@@ -48,9 +68,9 @@ function can_replace( $post ) {
  * @return boolean
  */
 function is_enabled() {
-	$settings = get_option( 'civil_comments', array() );
+	$settings = get_settings( 'civil_comments' );
 	$installed = ! empty( $settings['publication_slug'] )? true : false;
-	$enabled = isset( $settings['enable'] ) && '1' === $settings['enable'] ? true : false;
+	$enabled = isset( $settings['enable'] ) && (bool) $settings['enable'] ? true : false;
 	return apply_filters( 'civil_comments_enabled', $enabled && $installed );
 }
 

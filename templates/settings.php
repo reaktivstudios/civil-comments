@@ -23,7 +23,7 @@ settings_errors( 'civil_comments_messages' );
 	<form action="options.php" method="post">
 		<?php
 		settings_fields( 'civil_comments' );
-		$settings = get_option( 'civil_comments', array() );
+		$settings = Civil_Comments\get_settings( 'civil_comments' );
 		$enable = isset( $settings['enable'] ) ? (bool) $settings['enable'] : false;
 		$publication_slug = isset( $settings['publication_slug'] ) ? $settings['publication_slug'] : '';
 		$start_date = isset( $settings['start_date'] ) ? $settings['start_date'] : '';
@@ -41,7 +41,7 @@ settings_errors( 'civil_comments_messages' );
 					<label for="cc-enable"><?php esc_html_e( 'Enable Civil Comments' ); ?></label>
 				</th>
 				<td>
-					<input type="checkbox" name="civil_comments[enable]" id="cc-enable" value="1" <?php checked( '1', $enable ); ?>
+					<input type="checkbox" name="civil_comments[enable]" id="cc-enable" value="1" <?php checked( true, $enable ); ?>
 				</td>
 			</tr>
 			<tr>
@@ -108,7 +108,7 @@ settings_errors( 'civil_comments_messages' );
 						<label for="cc-enable-sso"><?php esc_html_e( 'Enable Single Sign-On' ); ?></label>
 					</th>
 					<td>
-						<input type="checkbox" name="civil_comments[enable_sso]" id="cc-enable-sso" value="1" <?php checked( '1', $enable_sso ); ?>>
+						<input type="checkbox" name="civil_comments[enable_sso]" id="cc-enable-sso" value="1" <?php checked( true, $enable_sso ); ?>>
 						<p class="description"><?php esc_html_e( 'Optional. Site owners can replace Civil\'s built-in login options with their site\'s existing account management system. Requires SSO to be enabled in the Civil Comments admin.' ); ?></p>
 					</td>
 				</tr>

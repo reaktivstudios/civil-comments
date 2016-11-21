@@ -6,7 +6,7 @@
  */
 
 global $post;
-$settings = get_option( 'civil_comments', array() );
+$settings = Civil_Comments\get_settings( 'civil_comments' );
 $publication_slug = isset( $settings['publication_slug'] ) ? $settings['publication_slug'] : '';
 $lang = isset( $settings['lang'] ) ? $settings['lang'] : 'en_US';
 $enable_sso = isset( $settings['enable_sso'] ) ? (bool) $settings['enable_sso'] : false;
@@ -20,7 +20,21 @@ if ( $enable_sso && ! empty( $sso_secret ) && is_user_logged_in() ) {
 		'token' => $token,
 	);
 }
+
+$civil = array(
+	'objectId'        => absint( $post->ID ),
+	'publicationSlug' => $publication_slug,
+	'lang'            => $lang,
+	'enableSso'       => $sso_secret,
+	'token'           => $current_user,
+	'loginUrl' => wp_login_url( get_permalink() ),
+	// @see: https://core.trac.wordpress.org/ticket/34352.
+	'logoutUrl' => html_entity_decode( wp_logout_url( get_permalink() ) ),
+);
 ?>
+<script>
+	var CivilWp = <?php echo wp_json_encode( $civil ); ?>;
+</script>
 <div id="comments" class="comments-area">
 	<div id="civil-comments"></div>
 	<script>
@@ -34,21 +48,18 @@ if ( $enable_sso && ! empty( $sso_secret ) && is_user_logged_in() ) {
 		c["CivilCommentsObject"] = c[n];
 	})(window, document, "script", "https://ssr.civilcomments.com/v1", "Civil");
 
-	Civil(<?php echo wp_json_encode( $post->ID ); ?>, <?php echo wp_json_encode( $publication_slug ); ?>, <?php echo wp_json_encode( $lang ); ?>);
-
-	function civilWpGetCurrentUser() {
-		return <?php echo wp_json_encode( $current_user ); ?>
-	}
+	Civil(CivilWp.objectId, CivilWp.publicationSlug, CivilWp.lang);
 
 	Civil({
 		provider: 'jwt',
-		getUser: civilWpGetCurrentUser,
+		getUser: function() {
+			return CivilWp.token;
+		},
 		login: function() {
-			window.location = <?php echo wp_json_encode( wp_login_url( get_permalink() ) ); ?>;
+			window.location = CivilWp.loginUrl;
 		},
 		logout: function() {
-			<?php // @see: https://core.trac.wordpress.org/ticket/34352 ?>
-			window.location = <?php echo wp_json_encode( html_entity_decode( wp_logout_url( get_permalink() ) ) ); ?>;
+			window.location = CivilWp.logoutUrl;
 		}
 	});
 	</script>

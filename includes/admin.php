@@ -12,7 +12,26 @@ add_action( 'admin_init', __NAMESPACE__ . '\\register_settings' );
  * Register setting.
  */
 function register_settings() {
-	register_setting( 'civil_comments', 'civil_comments' );
+	register_setting( 'civil_comments', 'civil_comments', __NAMESPACE__ . '\\sanitize_civil_comments_setting' );
+}
+
+/**
+ * Sanitize civil comments settings on save.
+ *
+ * @param  array $settings Settings to save.
+ * @return array
+ */
+function sanitize_civil_comments_setting( $settings ) {
+	$sanitized_setting = array();
+
+	$sanitized_setting['enable'] = ! empty( $settings['enable'] ) ? absint( $settings['enable'] ) : '';
+	$sanitized_setting['publication_slug'] = ! empty( $settings['publication_slug'] ) ? sanitize_text_field( $settings['publication_slug'] ) : '';
+	$sanitized_setting['lang'] = ! empty( $settings['lang'] ) ? sanitize_text_field( $settings['lang'] ) : 'en_US';
+	$sanitized_setting['start_date'] = ! empty( $settings['start_date'] ) ? sanitize_text_field( $settings['start_date'] ) : '';
+	$sanitized_setting['enable_sso'] = ! empty( $settings['enable_sso'] ) ? absint( $settings['enable_sso'] ) : false;
+	$sanitized_setting['sso_secret'] = ! empty( $settings['sso_secret'] ) ? sanitize_text_field( $settings['sso_secret'] ) : false;
+
+	return $sanitized_setting;
 }
 
 add_action( 'admin_menu', __NAMESPACE__ . '\\add_settings_page' );
