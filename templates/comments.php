@@ -33,7 +33,9 @@ $civil = array(
 );
 ?>
 <script>
+	/* <![CDATA[ */
 	var CivilWp = <?php echo wp_json_encode( $civil ); ?>;
+	/* ]]> */
 </script>
 <div id="comments" class="comments-area">
 	<div id="civil-comments"></div>
