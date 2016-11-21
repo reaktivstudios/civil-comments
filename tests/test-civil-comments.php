@@ -1,18 +1,15 @@
 <?php
 /**
- * Class SampleTest
+ * Civil Comments Tests
  *
  * @package Civil_Comments
  */
 
 /**
- * Sample test case.
+ * Civil Comments Test Class.
  */
 class CivilCommentsTest extends WP_UnitTestCase {
 
-	/**
-	 * A single example test.
-	 */
 	public function test_civil_comments_not_returned_when_disabled() {
 		$p = $this->factory->post->create( array(
 			'post_title' => 'no-comments-post'
@@ -27,11 +24,8 @@ class CivilCommentsTest extends WP_UnitTestCase {
 		$this->assertEquals( 0, $found );
 	}
 
-	/**
-	 * A single example test.
-	 */
 	public function test_civil_comments_template_used_when_enabled() {
-		$p = $this->factory()->post->create( array(
+		$p = $this->factory->post->create( array(
 			'post-title' => 'post-with-comments',
 			'post_status' => 'publish',
 			'comment_status' => 'open',
@@ -40,9 +34,6 @@ class CivilCommentsTest extends WP_UnitTestCase {
 		update_option( 'civil_comments', array( 'enable' => '1', 'publication_slug' => 'test' ) );
 
 		$this->go_to( get_permalink( $p ) );
-		$this->assertTrue( civil_is_enabled() );
-		$this->assertQueryTrue( 'is_single', 'is_singular' );
-		$this->assertTrue( civil_can_replace( get_post( $p ) ) );
 		$output = get_echo( 'comments_template' );
 
 		// Life in the fast lane.
