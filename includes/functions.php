@@ -25,6 +25,11 @@ function can_replace( $post ) {
 		$replace = false;
 	}
 
+	// Only show on password protected posts once password has been entered.
+	if ( post_password_required( $post ) ) {
+		$replace = false;
+	}
+
 	$settings = get_option( 'civil_comments', array() );
 	$start_date = ! empty( $settings['start_date'] ) ? $settings['start_date'] : '';
 

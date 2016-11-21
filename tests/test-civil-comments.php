@@ -41,4 +41,37 @@ class CivilCommentsTest extends WP_UnitTestCase {
 
 		$this->assertEquals( 1, $found );
 	}
+
+	public function test_no_comments_on_password_protected_post() {
+		$post = $this->factory->post->create_and_get( array(
+			'post_password'  => 'password',
+			'post-title'     => 'password-post',
+			'post_status'    => 'publish',
+			'comment_status' => 'open',
+		) );
+
+		$this->go_to( get_permalink( $post ) );
+
+		$this->assertFalse( Civil_Comments\can_replace( $post ) );
+	}
+
+	public function test_comments_on_password_protected_post_with_cookie() {
+		$password = 'password';
+		$hasher   = new PasswordHash( 8, true );
+
+		$_COOKIE['wp-postpass_' . COOKIEHASH] = $hasher->HashPassword( $password );
+
+		$post = $this->factory->post->create_and_get( array(
+			'post_password'  => 'password',
+			'post-title'     => 'password-post',
+			'post_status'    => 'publish',
+			'comment_status' => 'open',
+		) );
+
+		$this->go_to( get_permalink( $post ) );
+
+		$this->assertTrue( Civil_Comments\can_replace( $post ) );
+
+		unset( $_COOKIE['wp-postpass_' . COOKIEHASH] );
+	}
 }
