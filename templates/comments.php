@@ -15,7 +15,7 @@ $current_user = null;
 
 // Attempt SSO if enabled, configured and we're logged in.
 if ( $enable_sso && ! empty( $sso_secret ) && is_user_logged_in() ) {
-	$token = civil_get_jwt_token( wp_get_current_user(), $sso_secret );
+	$token = Civil_Comments\get_jwt_token( wp_get_current_user(), $sso_secret );
 	$current_user = array(
 		'token' => $token,
 	);
