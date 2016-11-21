@@ -54,7 +54,6 @@ class CivilCommentsTest extends WP_UnitTestCase {
 		$this->go_to( get_permalink( $p ) );
 		$output = get_echo( 'comments_template' );
 
-		// Life in the fast lane.
 		$found = preg_match( '/id="civil-comments"/', $output, $matches );
 
 		$this->assertEquals( 0, $found );
@@ -72,7 +71,6 @@ class CivilCommentsTest extends WP_UnitTestCase {
 		$this->go_to( get_permalink( $p ) );
 		$output = get_echo( 'comments_template' );
 
-		// Life in the fast lane.
 		$found = preg_match( '/id="civil-comments"/', $output, $matches );
 
 		$this->assertEquals( 1, $found );
@@ -110,5 +108,30 @@ class CivilCommentsTest extends WP_UnitTestCase {
 		$this->assertTrue( Civil_Comments\can_replace( $post ) );
 
 		unset( $_COOKIE['wp-postpass_' . COOKIEHASH] );
+	}
+
+	public function test_single_sign_on() {
+		$user_id = $this->factory->user->create();
+		$p = $this->factory->post->create( array(
+			'post-title' => 'post-with-comments',
+			'post_status' => 'publish',
+			'comment_status' => 'open',
+		) );
+
+		update_option( 'civil_comments', array(
+			'enable' => 1,
+			'publication_slug' => 'test',
+			'enable_sso' => 1,
+			'sso_secret' => 'asdf',
+		) );
+
+		wp_set_current_user( $user_id );
+
+		$this->go_to( get_permalink( $p ) );
+		$output = get_echo( 'comments_template' );
+
+		$found = preg_match( '/id="civil-comments"/', $output, $matches );
+
+		$this->assertEquals( 1, $found );
 	}
 }
