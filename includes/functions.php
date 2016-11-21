@@ -69,7 +69,7 @@ function generate_uuid() {
 /**
  * Get JWT token for SSO.
  *
- * @uses Civil_Comments\JWT
+ * @uses JWT
  *
  * @param  WP_User $user WP User object for the user to auth.
  * @param  string  $key  Secret key from Civil Comments.
@@ -82,7 +82,7 @@ function get_jwt_token( $user, $key ) {
 	$payload = array(
 		'exp'        => time() + (int) $expires,
 		'iat'        => time(),
-		'jti'        => civil_generate_uuid(),
+		'jti'        => generate_uuid(),
 		'id'         => $user->ID,
 		'name'       => $user->display_name,
 		'email'      => $user->user_email,
@@ -90,7 +90,7 @@ function get_jwt_token( $user, $key ) {
 	);
 
 	try {
-		$token = Civil_Comments\JWT::encode( $payload, $key, 'HS256' );
+		$token = JWT::encode( $payload, $key, 'HS256' );
 	} catch ( Exception $e ) {
 		return null;
 	}
