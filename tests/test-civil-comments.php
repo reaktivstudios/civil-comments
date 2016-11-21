@@ -10,6 +10,11 @@
  */
 class CivilCommentsTest extends WP_UnitTestCase {
 
+	function setUp() {
+		parent::setUp();
+		require_once ABSPATH . WPINC . '/class-phpass.php';
+	}
+
 	public function test_civil_comments_not_returned_when_disabled() {
 		$p = $this->factory->post->create( array(
 			'post_title' => 'no-comments-post'
@@ -57,6 +62,7 @@ class CivilCommentsTest extends WP_UnitTestCase {
 
 	public function test_comments_on_password_protected_post_with_cookie() {
 		$password = 'password';
+		require_once ABSPATH . 'wp-includes/class-phpass.php';
 		$hasher   = new PasswordHash( 8, true );
 
 		$_COOKIE['wp-postpass_' . COOKIEHASH] = $hasher->HashPassword( $password );
