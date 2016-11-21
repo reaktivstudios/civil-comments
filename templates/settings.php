@@ -26,6 +26,7 @@ settings_errors( 'civil_comments_messages' );
 		$settings = Civil_Comments\get_settings( 'civil_comments' );
 		$enable = isset( $settings['enable'] ) ? (bool) $settings['enable'] : false;
 		$publication_slug = isset( $settings['publication_slug'] ) ? $settings['publication_slug'] : '';
+		$lang = isset( $settings['lang'] ) ? $settings['lang'] : get_locale();
 		$start_date = isset( $settings['start_date'] ) ? $settings['start_date'] : '';
 		$enable_sso = isset( $settings['enable_sso'] ) ? (bool) $settings['enable_sso'] : false;
 		$sso_secret = isset( $settings['sso_secret'] ) ? $settings['sso_secret'] : '';
@@ -69,7 +70,7 @@ settings_errors( 'civil_comments_messages' );
 					}
 
 					if ( ! empty( $languages ) ) {
-						$locale = get_locale();
+						$locale = $lang;
 						if ( ! in_array( $locale, $languages, true ) ) {
 							$locale = '';
 						}
