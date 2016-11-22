@@ -35,7 +35,7 @@ $requirements = new Civil_Requirements_Check(
 	__FILE__,
 	'Civil Comments',
 	'5.3',
-	'4.1'
+	'4.2'
 );
 if ( ! $requirements->check() ) {
 	return;
