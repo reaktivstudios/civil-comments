@@ -36,3 +36,12 @@ e.g.
 1. Activate the plugin through the 'Plugins' menu in WordPress
 1. Check the box to "Enable Civil Comments" and add your publication slug to begin using Civil Comments on your site.
 
+## Changelog ##
+
+### 0.1.0 ###
+* Initial release
+
+## Screenshots ##
+
+## Upgrade Notice ##
+
