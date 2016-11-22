@@ -91,7 +91,7 @@ class Civil_Requirements_Check {
 	public function meets_minimum_php_version() {
 		if ( version_compare( PHP_VERSION, $this->min_php_version, '<' ) ) {
 			$this->errors->add( 'php_version', sprintf(
-				__( '%1$s requires PHP %2$s or later. You are currently running version %3$s.' ),
+				__( '%1$s requires PHP %2$s or later. You are currently running version %3$s.', 'civil-comments' ),
 				$this->name,
 				$this->min_php_version,
 				PHP_VERSION
@@ -106,7 +106,7 @@ class Civil_Requirements_Check {
 		global $wp_version;
 		if ( version_compare( $wp_version, $this->min_wp_version, '<' ) ) {
 			$this->errors->add( 'wp_version', sprintf(
-				__( '%1$s requires WordPress %2$s or later. You are currently running version %3$s.' ),
+				__( '%1$s requires WordPress %2$s or later. You are currently running version %3$s.', 'civil-comments' ),
 				$this->name,
 				$this->min_wp_version,
 				$wp_version
@@ -145,7 +145,7 @@ class Civil_Requirements_Check {
 			<p>
 			<?php printf(
 				wp_kses(
-					__( 'The <strong>%s</strong> plugin has been deactivated.</p>' ),
+					__( 'The <strong>%s</strong> plugin has been deactivated.</p>', 'civil-comments' ),
 					array( 'strong' )
 				),
 				esc_html( $this->name )

@@ -46,8 +46,8 @@ add_action( 'admin_menu', __NAMESPACE__ . '\\add_settings_page' );
 function add_settings_page() {
 	add_submenu_page(
 		'edit-comments.php',
-		__( 'Civil Comments' ),
-		__( 'Civil Comments' ),
+		__( 'Civil Comments', 'civil-comments' ),
+		__( 'Civil Comments', 'civil-comments' ),
 		'moderate_comments', // @TODO: Add cap filter.
 		'civil-comments',
 		__NAMESPACE__ . '\\render_settings_page'
