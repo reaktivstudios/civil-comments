@@ -57,6 +57,7 @@ $civil = array(
 
 	Civil(CivilWp.objectId, CivilWp.publicationSlug, CivilWp.lang);
 
+	<?php if ( ! empty( $token ) ) { ?>
 	Civil({
 		provider: 'jwt',
 		getUser: function() {
@@ -69,5 +70,6 @@ $civil = array(
 			window.location = CivilWp.logoutUrl;
 		}
 	});
+	<?php } ?>
 	</script>
 </div><!-- .comments-area -->
