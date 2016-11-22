@@ -1,5 +1,11 @@
 <?php
 namespace Civil_Comments;
+
+// Exit if accessed directly.
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
+
 /**
  * JSON Web Token implementation, based on this spec:
  * http://tools.ietf.org/html/draft-ietf-oauth-json-web-token-06

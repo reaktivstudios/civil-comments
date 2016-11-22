@@ -5,6 +5,11 @@
  * @package Civil_Comments
  */
 
+// Exit if accessed directly.
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
+
 global $post;
 $settings = Civil_Comments\get_settings( 'civil_comments' );
 $publication_slug = isset( $settings['publication_slug'] ) ? $settings['publication_slug'] : '';

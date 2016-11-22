@@ -13,6 +13,11 @@
  * @package         Civil_Comments
  */
 
+// Exit if accessed directly.
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
+
 if ( ! defined( 'CIVIL_PLUGIN_DIR' ) ) {
 	define( 'CIVIL_PLUGIN_DIR', dirname( __FILE__ ) );
 }
@@ -23,6 +28,17 @@ if ( ! defined( 'CIVIL_PLUGIN_URL' ) ) {
 
 if ( ! defined( 'CIVIL_VERSION' ) ) {
 	define( 'CIVIL_VERSION', '0.1.0' );
+}
+
+require_once CIVIL_PLUGIN_DIR . '/includes/requirements.php';
+$requirements = new Civil_Requirements_Check(
+	__FILE__,
+	'Civil Comments',
+	'5.3',
+	'4.1'
+);
+if ( ! $requirements->check() ) {
+	return;
 }
 
 require_once CIVIL_PLUGIN_DIR . '/includes/functions.php';

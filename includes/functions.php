@@ -7,6 +7,11 @@
 
 namespace Civil_Comments;
 
+// Exit if accessed directly.
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
+
 /**
  * Wrapper to set defaults when getting plugin settings.
  *

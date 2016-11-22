@@ -7,6 +7,11 @@
 
 namespace Civil_Comments;
 
+// Exit if accessed directly.
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
+
 add_action( 'admin_init', __NAMESPACE__ . '\\register_settings' );
 /**
  * Register setting.
