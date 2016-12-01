@@ -150,5 +150,28 @@ function comments_template( $template ) {
 		return $template;
 	}
 
-	return CIVIL_PLUGIN_DIR . '/templates/comments.php';
+	return locate( 'templates/civil-comments.php' );
+}
+
+/**
+ * Locate the Civil Comments output template.
+ *
+ * Checks the theme first before loading from the plugin.
+ *
+ * @param  string $template Template path.
+ * @return string
+ */
+function locate( $template ) {
+	// Check in active theme for templates/civil-comments.php.
+	$found = locate_template( array( $template ) );
+
+	// Include template from plugin, if exists.
+	if ( ! $found ) {
+		$file = CIVIL_PLUGIN_DIR . '/' . $template;
+		if ( file_exists( $file ) ) {
+			$found = $file;
+		}
+	}
+
+	return $found;
 }
