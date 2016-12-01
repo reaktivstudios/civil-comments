@@ -30,7 +30,7 @@ $civil = array(
 	'objectId'        => absint( $post->ID ),
 	'publicationSlug' => $publication_slug,
 	'lang'            => $lang,
-	'enableSso'       => $sso_secret,
+	'enableSso'       => $enable_sso,
 	'token'           => $current_user,
 	'loginUrl' => wp_login_url( get_permalink() ),
 	// @see: https://core.trac.wordpress.org/ticket/34352.
@@ -57,19 +57,19 @@ $civil = array(
 
 	Civil(CivilWp.objectId, CivilWp.publicationSlug, CivilWp.lang);
 
-	<?php if ( ! empty( $token ) ) { ?>
-	Civil({
-		provider: 'jwt',
-		getUser: function() {
-			return CivilWp.token;
-		},
-		login: function() {
-			window.location = CivilWp.loginUrl;
-		},
-		logout: function() {
-			window.location = CivilWp.logoutUrl;
-		}
-	});
-	<?php } ?>
+	if ( CivilWp.enableSso ) {
+		Civil({
+			provider: 'jwt',
+			getUser: function() {
+				return CivilWp.token;
+			},
+			login: function() {
+				window.location = CivilWp.loginUrl;
+			},
+			logout: function() {
+				window.location = CivilWp.logoutUrl;
+			}
+		});
+	}
 	</script>
 </div><!-- .comments-area -->
