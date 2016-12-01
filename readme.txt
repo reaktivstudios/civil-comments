@@ -15,7 +15,7 @@ Civil Comments is a paid plugin that lets you host civil discussions and debates
 
 *A paid subscription to Civil Comments is required to use this plugin.*
 
-[vimeo https://player.vimeo.com/video/167691566]
+[vimeo https://vimeo.com/167691566]
 
 = Get rid of moderation headaches =
 Civil Comments uses a patent-pending peer review system to keep comments non-toxic and fun—even at massive scale.
@@ -28,10 +28,6 @@ Civil Comments was built in modern, progressive React.js, with blazing-fast serv
 
 == Installation ==
 
-This section describes how to install the plugin and get it working.
-
-e.g.
-
 1. Upload `civil-comments` to the `/wp-content/plugins/` directory
 1. Activate the plugin through the 'Plugins' menu in WordPress
 1. Check the box to "Enable Civil Comments" and add your publication slug to begin using Civil Comments on your site.
@@ -43,5 +39,8 @@ e.g.
 
 == Screenshots ==
 
-== Upgrade Notice ==
+1. The Civil Comments comment form.
+2. Moderating submitted comments before a comment is posted.
+3. The Civil Comments settings page.
 
+== Upgrade Notice ==
