@@ -27,15 +27,18 @@ function show_civil_comments() {
 		);
 	}
 
+	$login_url = apply_filters( 'civil_login_url', wp_login_url( get_permalink() ) );
+	$logout_url = apply_filters( 'civil_logout_url', html_entity_decode( wp_logout_url( get_permalink() ) ) );
+
 	$civil = array(
 		'objectId'        => absint( $post->ID ),
 		'publicationSlug' => $publication_slug,
 		'lang'            => $lang,
 		'enableSso'       => $enable_sso,
 		'token'           => $current_user,
-		'loginUrl'        => wp_login_url( get_permalink() ),
+		'loginUrl'        => $login_url,
 		// @see: https://core.trac.wordpress.org/ticket/34352.
-		'logoutUrl'       => html_entity_decode( wp_logout_url( get_permalink() ) ),
+		'logoutUrl'       => $logout_url,
 	);
 	?>
 	<script>
@@ -56,6 +59,10 @@ function show_civil_comments() {
 	})(window, document, "script", "https://ssr.civilcomments.com/v1", "Civil");
 
 	Civil(CivilWp.objectId, CivilWp.publicationSlug, CivilWp.lang);
+
+	<?php
+	do_action( 'civil_custom_js' );
+	?>
 
 	if ( CivilWp.enableSso ) {
 		Civil({
