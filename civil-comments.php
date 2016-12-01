@@ -42,6 +42,7 @@ if ( ! $requirements->check() ) {
 }
 
 require_once CIVIL_PLUGIN_DIR . '/includes/functions.php';
+require_once CIVIL_PLUGIN_DIR . '/includes/template-tags.php';
 
 if ( is_admin() ) {
 	require_once CIVIL_PLUGIN_DIR . '/includes/admin.php';
