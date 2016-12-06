@@ -17,6 +17,7 @@ function show_civil_comments() {
 	$lang = isset( $settings['lang'] ) ? $settings['lang'] : 'en_US';
 	$enable_sso = isset( $settings['enable_sso'] ) ? (bool) $settings['enable_sso'] : false;
 	$sso_secret = isset( $settings['sso_secret'] ) ? $settings['sso_secret'] : false;
+	$hide = isset( $settings['hide'] ) ? (bool) $settings['hide'] : false;
 	$current_user = null;
 
 	// Attempt SSO if enabled, configured and we're logged in.
@@ -35,6 +36,7 @@ function show_civil_comments() {
 		'publicationSlug' => $publication_slug,
 		'lang'            => $lang,
 		'enableSso'       => $enable_sso,
+		'hide'            => $hide,
 		'token'           => $current_user,
 		'loginUrl'        => $login_url,
 		// @see: https://core.trac.wordpress.org/ticket/34352.
@@ -73,6 +75,10 @@ function show_civil_comments() {
 	 */
 	do_action( 'civil_custom_js' );
 	?>
+
+	if ( CivilWp.hide ) {
+		Civil({ hideComments: true });
+	}
 
 	if ( CivilWp.enableSso ) {
 		Civil({
