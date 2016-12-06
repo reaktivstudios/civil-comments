@@ -61,6 +61,16 @@ function show_civil_comments() {
 	Civil(CivilWp.objectId, CivilWp.publicationSlug, CivilWp.lang);
 
 	<?php
+	/**
+	 * Add custom javascript to the Civil Comments initialization.
+	 *
+	 * Action runs right after the Civil() javascript function runs inside the <script> block.
+	 * Users can add custom scripts such as analytics here.
+	 *
+	 * @since 0.1.0
+	 *
+	 * @param type  $var Description.
+	 */
 	do_action( 'civil_custom_js' );
 	?>
 
