@@ -28,7 +28,28 @@ function show_civil_comments() {
 		);
 	}
 
+	/**
+	 * Civil Login URL.
+	 *
+	 * Filter that contains the Civil Comments login url.  Can be overridden with this filter.
+	 *
+	 * @since 0.1.0
+	 *
+	 * @param type   $var Description.
+	 * @param string $var Login url.
+	 */
 	$login_url = apply_filters( 'civil_login_url', wp_login_url( get_permalink() ) );
+	
+	/**
+	 * Civil Logout URL.
+	 *
+	 * Filter that contains the Civil Comments logout url.  Can be overridden with this filter.
+	 *
+	 * @since 0.1.0
+	 *
+	 * @param type   $var Description.
+	 * @param string $var logout url.
+	 */
 	$logout_url = apply_filters( 'civil_logout_url', html_entity_decode( wp_logout_url( get_permalink() ) ) );
 
 	$civil = array(
