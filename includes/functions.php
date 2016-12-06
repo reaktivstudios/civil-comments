@@ -64,6 +64,17 @@ function can_replace( $post ) {
 		$replace = false;
 	}
 
+	/**
+	* Filter for Civil's can_replace logic.
+	*
+	* Filter gives you access to the replace boolean and the post object.
+	*
+	* @since 0.1.0
+	*
+	* @param type   $var Description.
+	* @param bool   $replace Boolen can replace comments or not.
+	* @param object $post Post object of the post/page being tested.
+	*/
 	return apply_filters( 'civil_can_replace', $replace, $post );
 }
 
@@ -76,6 +87,17 @@ function is_enabled() {
 	$settings = get_settings( 'civil_comments' );
 	$installed = ! empty( $settings['publication_slug'] )? true : false;
 	$enabled = isset( $settings['enable'] ) && (bool) $settings['enable'] ? true : false;
+
+	/**
+	* Filter for Civil's is_enabled logic.
+	*
+	* Filter gives you access to the is_enabled boolean of the plugin.
+	*
+	* @since 0.1.0
+	*
+	* @param type  $var Description.
+	* @param mixed $replace Boolen is enabled or not.
+	*/
 	return apply_filters( 'civil_comments_enabled', $enabled && $installed );
 }
 
