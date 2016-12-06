@@ -17,6 +17,7 @@ $lang = isset( $settings['lang'] ) ? $settings['lang'] : 'en_US';
 $enable_sso = isset( $settings['enable_sso'] ) ? (bool) $settings['enable_sso'] : false;
 $sso_secret = isset( $settings['sso_secret'] ) ? $settings['sso_secret'] : false;
 $current_user = null;
+$hide_comments = isset( $settings['hide'] ) ? (bool) $settings['hide'] : false;
 
 // Attempt SSO if enabled, configured and we're logged in.
 if ( $enable_sso && ! empty( $sso_secret ) && is_user_logged_in() ) {
@@ -56,6 +57,10 @@ $civil = array(
 	})(window, document, "script", "https://ssr.civilcomments.com/v1", "Civil");
 
 	Civil(CivilWp.objectId, CivilWp.publicationSlug, CivilWp.lang);
+
+	<?php if ( $hide_comments ) { ?>
+	Civil({ hideComments: true });
+	<?php } ?>
 
 	<?php if ( ! empty( $token ) ) { ?>
 	Civil({
