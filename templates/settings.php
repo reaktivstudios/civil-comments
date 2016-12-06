@@ -53,14 +53,6 @@ settings_errors( 'civil_comments_messages' );
 			</tr>
 			<tr>
 				<th scope="row">
-					<label for="cc-hide"><?php esc_html_e( 'Hide Comments Until Clicked', 'civil-comments' ); ?></label>
-				</th>
-				<td>
-					<input type="checkbox" name="civil_comments[hide]" id="cc-hide" value="1" <?php checked( true, $hide ); ?>
-				</td>
-			</tr>
-			<tr>
-				<th scope="row">
 					<label for="cc-publication-slug">
 						<?php esc_html_e( 'Publication Slug', 'civil-comments' ); ?>
 					</label>
@@ -111,6 +103,14 @@ settings_errors( 'civil_comments_messages' );
 					<td>
 						<input type="text" name="civil_comments[start_date]" id="js-start-date" class="regular-text" value="<?php echo esc_attr( $start_date ); ?>">
 						<p class="description"><?php esc_html_e( 'If left blank, civil comments will apply to all existing and future posts. If a date and time are provided, Civil will only be applied to posts created after that date.', 'civil-comments' ); ?></p>
+					</td>
+				</tr>
+				<tr>
+					<th scope="row">
+						<label for="cc-hide"><?php esc_html_e( 'Hide Comments Until Clicked', 'civil-comments' ); ?></label>
+					</th>
+					<td>
+						<input type="checkbox" name="civil_comments[hide]" id="cc-hide" value="1" <?php checked( true, $hide ); ?>
 					</td>
 				</tr>
 				<tr>
