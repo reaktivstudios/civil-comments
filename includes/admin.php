@@ -30,6 +30,7 @@ function sanitize_civil_comments_setting( $settings ) {
 	$sanitized_setting = array();
 
 	$sanitized_setting['enable'] = ! empty( $settings['enable'] ) ? absint( $settings['enable'] ) : '';
+	$sanitized_setting['hide'] = ! empty( $settings['hide'] ) ? absint( $settings['hide'] ) : '';
 	$sanitized_setting['publication_slug'] = ! empty( $settings['publication_slug'] ) ? sanitize_text_field( $settings['publication_slug'] ) : '';
 	$sanitized_setting['lang'] = ! empty( $settings['lang'] ) ? sanitize_text_field( $settings['lang'] ) : 'en_US';
 	$sanitized_setting['start_date'] = ! empty( $settings['start_date'] ) ? sanitize_text_field( $settings['start_date'] ) : '';

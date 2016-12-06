@@ -30,6 +30,7 @@ settings_errors( 'civil_comments_messages' );
 		settings_fields( 'civil_comments' );
 		$settings = Civil_Comments\get_settings( 'civil_comments' );
 		$enable = isset( $settings['enable'] ) ? (bool) $settings['enable'] : false;
+		$hide = isset( $settings['hide'] ) ? (bool) $settings['hide'] : false;
 		$publication_slug = isset( $settings['publication_slug'] ) ? $settings['publication_slug'] : '';
 		$lang = isset( $settings['lang'] ) ? $settings['lang'] : get_locale();
 		$start_date = isset( $settings['start_date'] ) ? $settings['start_date'] : '';
@@ -48,6 +49,14 @@ settings_errors( 'civil_comments_messages' );
 				</th>
 				<td>
 					<input type="checkbox" name="civil_comments[enable]" id="cc-enable" value="1" <?php checked( true, $enable ); ?>
+				</td>
+			</tr>
+			<tr>
+				<th scope="row">
+					<label for="cc-hide"><?php esc_html_e( 'Hide Comments Until Clicked', 'civil-comments' ); ?></label>
+				</th>
+				<td>
+					<input type="checkbox" name="civil_comments[hide]" id="cc-hide" value="1" <?php checked( true, $hide ); ?>
 				</td>
 			</tr>
 			<tr>
