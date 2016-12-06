@@ -49,4 +49,37 @@ Civil Comments was built in modern, progressive React.js, with blazing-fast serv
 ![The Civil Comments settings page.](http://ps.w.org/civil-comments/assets/screenshot-3.png)
 
 
+## FAQ ##
+
+### What filters are available? ###
+*	** civil_login_url ** - Override login page url
+*	** civil_logout_url ** - Override logout page url
+
+### What actions are available? ###
+*	** civil_custom_js ** - Add custom JS to the Civil initialization
+
+### How do I integrate analytics? ###
+Use the 'civil_custom_js' action.  Here is an example to be used in your theme's functions.php
+```
+function prefix_civil_integrate_analytics() {
+?>
+	function myLogEventFunction (eventName, eventData) {
+		console.log("Civil event called");
+		console.log("Event Name:", eventName);
+		console.log("Event Data:", eventData);
+
+		// ...add event to your analytics platform
+	}
+	Civil({ logEvent: myLogEventFunction });
+<?php
+}
+add_action( 'civil_custom_js', 'prefix_civil_integrate_analytics', 10 );
+```
+
+### Can I use a custom comments template? ###
+Yes, in your theme, just create `templates/civil-comments.php`.  Make sure to use show_civil_comments() somewhere in that file, as it is required. The default template is located inside this plugin at `templates/civil-comments.php`.
+
+### Can I hide the comments on a page/post? ###
+Yes.  In the Civil Comments setting page, check the box next to `Hide Comments Until Clicked`.
+
 ## Upgrade Notice ##
