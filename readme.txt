@@ -7,13 +7,13 @@ Stable tag: 0.1.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
-Civil Comments is a paid plugin that lets you host civil discussions and debates on your site without the usual spam, harassment, and abuse.
+Civil Comments is a subscription service that lets you host civil discussions and debates on your site without the usual spam, harassment, and abuse.
 
 == Description ==
 
-Civil Comments is a paid plugin that lets you host civil discussions and debates on your site without the usual spam, harassment, and abuse. Built to integrate seamlessly with WordPress, Civil Comments gives site owners and developers control over how their community looks and runs.
+Civil Comments is a subscription service that lets you host civil discussions and debates on your site without the usual spam, harassment, and abuse. Built to integrate seamlessly with WordPress, Civil Comments gives site owners and developers control over how their community looks and runs.
 
-*A paid subscription to Civil Comments is required to use this plugin.*
+*A subscription to Civil Comments is required to use this plugin.*
 
 [vimeo https://vimeo.com/167691566]
 
