@@ -39,7 +39,7 @@ function show_civil_comments() {
 	 * @param string $var Login url.
 	 */
 	$login_url = apply_filters( 'civil_login_url', wp_login_url( get_permalink() ) );
-	
+
 	/**
 	 * Civil Logout URL.
 	 *
