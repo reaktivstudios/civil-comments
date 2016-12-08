@@ -33,7 +33,7 @@ function show_civil_comments() {
 	 *
 	 * Filter that contains the Civil Comments login url.  Can be overridden with this filter.
 	 *
-	 * @since 0.1.0
+	 * @since 0.2.0
 	 *
 	 * @param string $login_url Login url.
 	 */
@@ -46,7 +46,7 @@ function show_civil_comments() {
 	 *
 	 * @see: https://core.trac.wordpress.org/ticket/34352
 	 *
-	 * @since 0.1.0
+	 * @since 0.2.0
 	 *
 	 * @param string $logout_url Logout url.
 	 */
@@ -89,7 +89,7 @@ function show_civil_comments() {
 	 * Action runs right after the Civil() javascript function runs inside the <script> block.
 	 * Users can add custom scripts such as analytics here.
 	 *
-	 * @since 0.1.0
+	 * @since 0.2.0
 	 */
 	do_action( 'civil_custom_js' );
 	?>
