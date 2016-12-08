@@ -3,7 +3,7 @@
 **Tags:** comments, community, civil, civil comments, spam, comment spam, spam comments, anti-spam, moderation, comment moderation, moderate comments, trolls  
 **Requires at least:** 4.2  
 **Tested up to:** 4.6.1  
-**Stable tag:** 0.1.0  
+**Stable tag:** 0.2.0  
 **License:** GPLv2 or later  
 **License URI:** http://www.gnu.org/licenses/gpl-2.0.html  
 
@@ -33,6 +33,14 @@ Civil Comments was built in modern, progressive React.js, with blazing-fast serv
 1. Check the box to "Enable Civil Comments" and add your publication slug to begin using Civil Comments on your site.
 
 ## Changelog ##
+
+### 0.2.0 ###
+* Feature - Add hide comments until clicked.
+* Fix - Login and Logout URLs didn't work with unauthenticated users.
+* Fix - Refactor comments.php to only require a single template tag `show_civil_comments()`.
+* Dev - Add login/logout url filters and custom js hook to support analytics integration.
+* Dev - Add inline hook documentation.
+* Dev - Allow loading a custom template from the theme. Create `templates/civil-comments.php` in your active theme to use a custom template.
 
 ### 0.1.0 ###
 * Initial release
