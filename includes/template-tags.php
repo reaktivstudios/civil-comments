@@ -35,7 +35,6 @@ function show_civil_comments() {
 	 *
 	 * @since 0.1.0
 	 *
-	 * @param type   $filter    Description.
 	 * @param string $login_url Login url.
 	 */
 	$login_url = apply_filters( 'civil_login_url', wp_login_url( get_permalink() ) );
@@ -49,8 +48,7 @@ function show_civil_comments() {
 	 *
 	 * @since 0.1.0
 	 *
-	 * @param type   $filter     Description.
-	 * @param string $logout_url logout url.
+	 * @param string $logout_url Logout url.
 	 */
 	$logout_url = apply_filters( 'civil_logout_url', html_entity_decode( wp_logout_url( get_permalink() ) ) );
 
@@ -92,8 +90,6 @@ function show_civil_comments() {
 	 * Users can add custom scripts such as analytics here.
 	 *
 	 * @since 0.1.0
-	 *
-	 * @param type  $action Description.
 	 */
 	do_action( 'civil_custom_js' );
 	?>
