@@ -86,7 +86,7 @@ function is_enabled() {
 	$enabled = isset( $settings['enable'] ) && (bool) $settings['enable'] ? true : false;
 
 	/**
-	* Allows user to override whether Civil Comments is enabled and has a publication slug.
+	* Allows user to override whether Civil Comments is enabled.
 	*
 	* @since 0.1.0
 	*
