@@ -65,15 +65,13 @@ function can_replace( $post ) {
 	}
 
 	/**
-	* Filter for Civil's can_replace logic.
-	*
-	* Filter gives you access to the replace boolean and the post object.
+	* Allows user to override whether to show civil comments on a specific post.
 	*
 	* @since 0.1.0
 	*
-	* @param type   $var Description.
-	* @param bool   $replace Boolen can replace comments or not.
-	* @param object $post Post object of the post/page being tested.
+	* @param type   $var     Description.
+	* @param bool   $replace Boolean can replace comments or not.
+	* @param object $post    Post object of the post/page being tested.
 	*/
 	return apply_filters( 'civil_can_replace', $replace, $post );
 }
@@ -95,8 +93,8 @@ function is_enabled() {
 	*
 	* @since 0.1.0
 	*
-	* @param type  $var Description.
-	* @param mixed $replace Boolen is enabled or not.
+	* @param type  $var     Description.
+	* @param mixed $replace Boolean is enabled or not.
 	*/
 	return apply_filters( 'civil_comments_enabled', $enabled && $installed );
 }
