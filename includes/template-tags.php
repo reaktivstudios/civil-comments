@@ -45,6 +45,8 @@ function show_civil_comments() {
 	 *
 	 * Filter that contains the Civil Comments logout url.  Can be overridden with this filter.
 	 *
+	 * @see: https://core.trac.wordpress.org/ticket/34352
+	 *
 	 * @since 0.1.0
 	 *
 	 * @param type   $var Description.
@@ -60,7 +62,6 @@ function show_civil_comments() {
 		'hide'            => $hide,
 		'token'           => $current_user,
 		'loginUrl'        => $login_url,
-		// @see: https://core.trac.wordpress.org/ticket/34352.
 		'logoutUrl'       => $logout_url,
 	);
 	?>
