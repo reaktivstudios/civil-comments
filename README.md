@@ -49,37 +49,38 @@ Civil Comments was built in modern, progressive React.js, with blazing-fast serv
 ![The Civil Comments settings page.](http://ps.w.org/civil-comments/assets/screenshot-3.png)
 
 
-## FAQ ##
+## Frequently Asked Questions ##
 
-### What filters are available? ###
-*	** civil_login_url ** - Override login page url
-*	** civil_logout_url ** - Override logout page url
+### Which hooks are available? ###
 
-### What actions are available? ###
-*	** civil_custom_js ** - Add custom JS to the Civil initialization
+* ** civil_login_url ** - Override the login page url, defaults to the standard `wp_login_url()` which can also be filtered.
+* ** civil_logout_url ** - Override the logout page url, defaults to the standard `wp_logout_url()` which can also be filtered.
+* ** civil_custom_js ** - Add custom JS to the Civil initialization, for analytics integration or other custom code.
 
 ### How do I integrate analytics? ###
-Use the 'civil_custom_js' action.  Here is an example to be used in your theme's functions.php
-```
-function prefix_civil_integrate_analytics() {
-?>
-	function myLogEventFunction (eventName, eventData) {
-		console.log("Civil event called");
-		console.log("Event Name:", eventName);
-		console.log("Event Data:", eventData);
 
-		// ...add event to your analytics platform
-	}
-	Civil({ logEvent: myLogEventFunction });
-<?php
-}
-add_action( 'civil_custom_js', 'prefix_civil_integrate_analytics', 10 );
-```
+Use the `civil_custom_js` action. Here is an example to be used in your theme's functions.php:
+
+    function prefix_civil_integrate_analytics() {
+    ?>
+        function myLogEventFunction (eventName, eventData) {
+            console.log("Civil event called");
+            console.log("Event Name:", eventName);
+            console.log("Event Data:", eventData);
+
+            // ...add event to your analytics platform
+        }
+        Civil({ logEvent: myLogEventFunction });
+    <?php
+    }
+    add_action( 'civil_custom_js', 'prefix_civil_integrate_analytics', 10 );
 
 ### Can I use a custom comments template? ###
-Yes, in your theme, just create `templates/civil-comments.php`.  Make sure to use show_civil_comments() somewhere in that file, as it is required. The default template is located inside this plugin at `templates/civil-comments.php`.
 
-### Can I hide the comments on a page/post? ###
-Yes.  In the Civil Comments setting page, check the box next to `Hide Comments Until Clicked`.
+Yes, in your theme, just create a new template at `templates/civil-comments.php`. The template can be completely custom, just place the `show_civil_comments()` template tag in that file where you want the comments to be displayed. The default template is located inside this plugin at `templates/civil-comments.php`.
+
+### Can I hide the comments until clicked? ###
+
+Yes. In the Civil Comments setting page, check the box next to `Hide Comments Until Clicked`. Comments will be hidden until the user clicks the comments button.
 
 ## Upgrade Notice ##

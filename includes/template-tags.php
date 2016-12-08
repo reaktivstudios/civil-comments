@@ -39,11 +39,13 @@ function show_civil_comments() {
 	 * @param string $login_url Login url.
 	 */
 	$login_url = apply_filters( 'civil_login_url', wp_login_url( get_permalink() ) );
-	
+
 	/**
 	 * Civil Logout URL.
 	 *
 	 * Filter that contains the Civil Comments logout url.  Can be overridden with this filter.
+	 *
+	 * @see: https://core.trac.wordpress.org/ticket/34352
 	 *
 	 * @since 0.1.0
 	 *
@@ -60,7 +62,6 @@ function show_civil_comments() {
 		'hide'            => $hide,
 		'token'           => $current_user,
 		'loginUrl'        => $login_url,
-		// @see: https://core.trac.wordpress.org/ticket/34352.
 		'logoutUrl'       => $logout_url,
 	);
 	?>
