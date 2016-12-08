@@ -64,6 +64,14 @@ function can_replace( $post ) {
 		$replace = false;
 	}
 
+	/**
+	* Allows user to override whether to show civil comments on a specific post.
+	*
+	* @since 0.1.0
+	*
+	* @param bool   $replace Boolean can replace comments or not.
+	* @param object $post    Post object of the post/page being tested.
+	*/
 	return apply_filters( 'civil_can_replace', $replace, $post );
 }
 
@@ -76,6 +84,14 @@ function is_enabled() {
 	$settings = get_settings( 'civil_comments' );
 	$installed = ! empty( $settings['publication_slug'] )? true : false;
 	$enabled = isset( $settings['enable'] ) && (bool) $settings['enable'] ? true : false;
+
+	/**
+	* Allows user to override whether Civil Comments is enabled.
+	*
+	* @since 0.1.0
+	*
+	* @param mixed $replace Boolean is enabled or not.
+	*/
 	return apply_filters( 'civil_comments_enabled', $enabled && $installed );
 }
 
