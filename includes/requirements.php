@@ -76,7 +76,7 @@ class Civil_Requirements_Check {
 		$this->meets_minimum_wp_version();
 
 		if ( $this->has_errors() ) {
-			unset( $_GET['activate'] ); // input var okay.
+			unset( $_GET['activate'] ); // Input var okay.
 			$this->deactivate();
 			add_action( 'admin_notices', array( $this, 'admin_notices' ) );
 			return false;
@@ -148,7 +148,8 @@ class Civil_Requirements_Check {
 			<p><?php echo esc_html( $msg ); ?></p>
 		<?php } ?>
 			<p>
-			<?php printf(
+			<?php
+			printf(
 				wp_kses(
 					__( 'The <strong>%s</strong> plugin has been deactivated.</p>', 'civil-comments' ),
 					array( 'strong' )
