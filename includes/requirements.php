@@ -118,6 +118,11 @@ class Civil_Requirements_Check {
 	 * Deactivate the plugin.
 	 */
 	function deactivate() {
+		// If on WP.com VIP, do not attempt to deactivate.
+		if ( defined( 'WPCOM_IS_VIP_ENV' ) && true === WPCOM_IS_VIP_ENV ) {
+			return;
+		}
+
 		require_once( ABSPATH . '/wp-admin/includes/plugin.php' );
 		if ( function_exists( 'deactivate_plugins' ) ) {
 			deactivate_plugins( $this->file );
