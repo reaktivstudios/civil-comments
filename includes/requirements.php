@@ -79,6 +79,7 @@ class Civil_Requirements_Check {
 			unset( $_GET['activate'] ); // Input var okay.
 			$this->deactivate();
 			add_action( 'admin_notices', array( $this, 'admin_notices' ) );
+			add_action( 'network_admin_notices', array( $this, 'admin_notices' ) );
 			return false;
 		}
 
