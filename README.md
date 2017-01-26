@@ -3,7 +3,7 @@
 **Tags:** comments, community, civil, civil comments, spam, comment spam, spam comments, anti-spam, moderation, comment moderation, moderate comments, trolls  
 **Requires at least:** 4.2  
 **Tested up to:** 4.7  
-**Stable tag:** 0.2.0  
+**Stable tag:** 0.2.1  
 **License:** GPLv2 or later  
 **License URI:** http://www.gnu.org/licenses/gpl-2.0.html  
 
@@ -33,6 +33,9 @@ Civil Comments was built in modern, progressive React.js, with blazing-fast serv
 1. Check the box to "Enable Civil Comments" and add your publication slug to begin using Civil Comments on your site.
 
 ## Changelog ##
+
+### 0.2.1 ###
+* Dev - Don't deactivate on WordPress.com VIP.
 
 ### 0.2.0 ###
 * Feature - Add hide comments until clicked.
