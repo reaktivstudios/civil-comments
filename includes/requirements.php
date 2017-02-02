@@ -76,9 +76,10 @@ class Civil_Requirements_Check {
 		$this->meets_minimum_wp_version();
 
 		if ( $this->has_errors() ) {
-			unset( $_GET['activate'] ); // input var okay.
+			unset( $_GET['activate'] ); // Input var okay.
 			$this->deactivate();
 			add_action( 'admin_notices', array( $this, 'admin_notices' ) );
+			add_action( 'network_admin_notices', array( $this, 'admin_notices' ) );
 			return false;
 		}
 
@@ -118,6 +119,11 @@ class Civil_Requirements_Check {
 	 * Deactivate the plugin.
 	 */
 	function deactivate() {
+		// If on WP.com VIP, do not attempt to deactivate.
+		if ( defined( 'WPCOM_IS_VIP_ENV' ) && true === WPCOM_IS_VIP_ENV ) {
+			return;
+		}
+
 		require_once( ABSPATH . '/wp-admin/includes/plugin.php' );
 		if ( function_exists( 'deactivate_plugins' ) ) {
 			deactivate_plugins( $this->file );
@@ -143,7 +149,8 @@ class Civil_Requirements_Check {
 			<p><?php echo esc_html( $msg ); ?></p>
 		<?php } ?>
 			<p>
-			<?php printf(
+			<?php
+			printf(
 				wp_kses(
 					__( 'The <strong>%s</strong> plugin has been deactivated.</p>', 'civil-comments' ),
 					array( 'strong' )

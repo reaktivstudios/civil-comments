@@ -7,7 +7,7 @@
  * Author URI:      https://www.civilcomments.com/
  * Text Domain:     civil-comments
  * Domain Path:     /languages
- * Version:         0.2.0
+ * Version:         0.2.1
  * License:         GPLv2 or later
  *
  * @package         Civil_Comments
@@ -27,7 +27,7 @@ if ( ! defined( 'CIVIL_PLUGIN_URL' ) ) {
 }
 
 if ( ! defined( 'CIVIL_VERSION' ) ) {
-	define( 'CIVIL_VERSION', '0.2.0' );
+	define( 'CIVIL_VERSION', '0.2.1' );
 }
 
 require_once CIVIL_PLUGIN_DIR . '/includes/requirements.php';
