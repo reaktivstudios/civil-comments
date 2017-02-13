@@ -96,32 +96,38 @@ read -p "PRESS [ENTER] TO DEPLOY BRANCH "${BRANCH}
 
 # REMOVE UNWANTED FILES & FOLDERS
 echo "Removing unwanted files"
-rm -Rf .git
-rm -Rf .github
-rm -Rf tests
-rm -Rf apigen
-rm -Rf bin
-rm -f .gitattributes
-rm -f .gitignore
+rm -f .coveralls.yml
 rm -f .distignore
+rm -f .editorconfig
+rm -Rf .git
+rm -f .gitattributes
+rm -Rf .github
+rm -f .gitignore
 rm -f .gitmodules
-rm -f .travis.yml
-rm -f Gruntfile.js
-rm -f package.json
 rm -f .jscrsrc
 rm -f .jshintrc
+rm -f .scrutinizer.yml
+rm -f .travis.yml
+rm -f apigen.neon
+rm -Rf apigen
+rm -Rf bin
+rm -f CHANGELOG.txt
 rm -f composer.json
+rm -f composer.lock
+rm -Rf coverage
+rm -f CONTRIBUTING.md
+rm -f Gruntfile.js
+rm -f multisite.xml
+rm -Rf node_modules
+rm -f package.json
+rm -f phpcs.xml
+rm -f phpcs.xml.dist
 rm -f phpunit.xml
 rm -f phpunit.xml.dist
-rm -f phpcs.xml.dist
 rm -f README.md
-rm -f .coveralls.yml
-rm -f .travis.yml
-rm -f .editorconfig
-rm -f .scrutinizer.yml
-rm -f apigen.neon
-rm -f CHANGELOG.txt
-rm -f CONTRIBUTING.md
+rm -Rf tests
+rm -Rf wp-cli.local.yml
+rm -Rf vendor
 
 # MOVE INTO SVN DIR
 cd $ROOT_PATH$TEMP_SVN_REPO
