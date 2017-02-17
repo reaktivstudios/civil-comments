@@ -15,7 +15,7 @@ Civil Comments is a subscription service that lets you host civil discussions an
 
 *A subscription to Civil Comments is required to use this plugin.*
 
-[vimeo https://vimeo.com/167691566]
+[vimeo https://vimeo.com/199699519]
 
 ### Get rid of moderation headaches ###
 Civil Comments uses a patent-pending peer review system to keep comments non-toxic and fun—even at massive scale.
